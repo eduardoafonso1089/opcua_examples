@@ -20,6 +20,8 @@ OPC UA (Open Platform Communications Unified Architecture) is a machine-to-machi
 
 The repository is organized as follows:
 
+```
+
 /opcua_examples
 |-- /examples
 | |-- basic_server.c
@@ -31,6 +33,7 @@ The repository is organized as follows:
 |-- .gitignore
 |-- LICENSE
 |-- README.md
+```
 
 
 - **/examples**: Contains example source files demonstrating different OPC UA functionalities.
@@ -75,4 +78,34 @@ After compiling the examples, you can run them from the command line. Here are s
 ```
 
 For detailed instructions on running each example, refer to the comments in the source files located in the /examples directory.
+
+## Examples
+
+### Basic Server and Client
+
+basic_server.c: A simple OPC UA server that provides a basic set of services.
+basic_client.c: A client that connects to the basic server and performs basic operations.
+
+### Data Access
+
+data_access_server.c: A server that supports data access services.
+data_access_client.c: A client that reads and writes data from/to the data access server.
+
+### Events
+
+event_server.c: A server that generates events.
+event_client.c: A client that subscribes to and processes events from the event server.
+
+## Contribution
+
+Contributions are welcome! If you have any examples you would like to add or improvements to the existing ones, feel free to open issues and submit pull requests. To contribute:
+
+- Fork the repository.
+- Create a branch for your feature (git checkout -b feature/MyFeature).
+- Commit your changes (git commit -m 'Add MyFeature').
+- Push to the branch (git push origin feature/MyFeature).
+- Open a Pull Request.
+
+## License
+This project is licensed under the MIT License - see the LICENSE file for details.
 

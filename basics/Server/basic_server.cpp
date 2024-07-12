@@ -2,8 +2,8 @@
  * See http://creativecommons.org/publicdomain/zero/1.0/ for more information. */
 
 #include <open62541/server.h>
+#include <open62541/plugin/log_stdout.h>
 #include "./CreatorIM.h"
-
 /* Build Instructions (Linux)
  * - g++ server.cpp -lopen62541 -o server */
 
@@ -15,7 +15,6 @@ int main()
 {
 
     UA_StatusCode retval;
-    UA_Logger * log;
     UA_Server * server = UA_Server_new();
     UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 
@@ -28,11 +27,11 @@ int main()
 
     if(opcuaServer.retVal != UA_STATUSCODE_GOOD )
     {
-        UA_LOG_ERROR(log, UA_LOGCATEGORY_SERVER,"Error %s \n", UA_StatusCode_name(opcuaServer.retVal));
+        UA_LOG_ERROR(UA_Log_Stdout, UA_LOGCATEGORY_SERVER,"Error %s \n", UA_StatusCode_name(opcuaServer.retVal));
     }
     else
     {
-        UA_LOG_INFO(log, UA_LOGCATEGORY_SERVER,"Info %s \n", UA_StatusCode_name(opcuaServer.retVal));
+        UA_LOG_INFO(UA_Log_Stdout, UA_LOGCATEGORY_SERVER,"Info %s \n", UA_StatusCode_name(opcuaServer.retVal));
 
     }
     

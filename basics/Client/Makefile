@@ -1,29 +1,14 @@
-# Compiler
-CC=g++
+client: basic_client.o ClientAgent.o
+	@ $(CC) -o client basic_client.o ClientAgent.o $(OPCUA_FLAGS)
+	@ echo 'Finished building binary: $@'
  
-# Flags for compiler
-CC_FLAGS=-c         \
-         -W         \
-         -Wall      \
-         -ansi      \
-         -pedantic	
-
-OPCUA_FLAGS=-ldl \
-			-lopen62541	
-		 	
+basic_client.o: basic_client.cpp ClientAgent.h
+	@ $(CC) -o basic_client.o basic_client.cpp $(CC_FLAGS) $(OPCUA_FLAGS)
+	@ echo 'Building target using GCC compiler: $<'
  
-client: #basic_server.o CreatorIM.o
-	touch client.cpp
-#	@ #$(CC) -o server basic_server.o CreatorIM.o $(OPCUA_FLAGS)
-#	@ echo 'Finished building binary: $@'
- 
-#basic_server.o: basic_server.cpp CreatorIM.h
-#	@ $(CC) -o basic_server.o basic_server.cpp $(CC_FLAGS) $(OPCUA_FLAGS)
-#	@ echo 'Building target using GCC compiler: $<'
- 
-#CreatorIM.o: CreatorIM.cpp CreatorIM.h
-#	@ $(CC) -o CreatorIM.o CreatorIM.cpp $(CC_FLAGS)
-#	@ echo 'Building target using GCC compiler: $<'
+ClientAgent.o: ClientAgent.cpp ClientAgent.h
+	@ $(CC) -o ClientAgent.o ClientAgent.cpp $(CC_FLAGS)
+	@ echo 'Building target using GCC compiler: $<'
 
 clean:
-	rm -rf *.o *~ client.cpp
+	rm -rf *.o *~ client

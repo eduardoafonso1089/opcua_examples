@@ -1,17 +1,3 @@
-# Compiler
-CC=g++
- 
-# Flags for compiler
-CC_FLAGS=-c         \
-         -W         \
-         -Wall      \
-         -ansi      \
-         -pedantic	
-
-OPCUA_FLAGS=-ldl \
-			-lopen62541	
-		 	
- 
 server: basic_server.o CreatorIM.o
 	@ $(CC) -o server basic_server.o CreatorIM.o $(OPCUA_FLAGS)
 	@ echo 'Finished building binary: $@'

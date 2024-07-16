@@ -14,6 +14,7 @@ namespace CLIENTAGENT
 
         ClientAgent();
         UA_StatusCode connectServer(const char * url);
+        void readValue(UA_NodeId node);
         void deleteClient();
     };
 }

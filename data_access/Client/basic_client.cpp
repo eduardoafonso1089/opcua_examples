@@ -19,6 +19,8 @@ int main(void) {
 
     ClientAgent clientAgent = ClientAgent();
     const char * url = "opc.tcp://localhost:4840";
+    char * nodeName = "incremental.value";
+    UA_NodeId nodeRead = UA_NODEID_STRING(1, nodeName);
     
     /* Endless loop runAsync */
     while(running) {
@@ -26,6 +28,8 @@ int main(void) {
         /* if the connection is closed/errored, the connection will be reset and then reconnected */
         /* Alternatively you can also use UA_Client_getState to get the current state */
         clientAgent.connectServer(url);
+        
+        clientAgent.readValue(nodeRead);
         
     };
 

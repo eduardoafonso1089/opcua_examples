@@ -36,3 +36,29 @@ void ClientAgent::deleteClient()
 {
     UA_Client_delete(this->client); /* Disconnects the client internally */
 }
+
+void ClientAgent::readValue(UA_NodeId node)
+{
+    UA_ReadRequest request;
+    UA_ReadRequest_init(&request);
+    UA_ReadResponse response;
+    UA_ReadValueId nodesId;
+    UA_ReadValueId_init(&nodesId);
+
+    nodesId.attributeId = UA_ATTRIBUTEID_VALUE;
+    nodesId.nodeId = node;
+    request.nodesToReadSize = 1;
+    request.nodesToRead = &nodesId;
+
+    response = UA_Client_Service_read(this->client, request);
+
+    if (response.responseHeader.serviceResult != UA_STATUSCODE_GOOD)
+    {
+        UA_LOG_ERROR(UA_Log_Stdout, UA_LOGCATEGORY_SERVER, "Error %s \n", UA_StatusCode_name(response.responseHeader.serviceResult));
+    }
+    else
+    {
+        UA_LOG_INFO(UA_Log_Stdout, UA_LOGCATEGORY_SERVER, "Info %s -> Vale: %d  \n", UA_StatusCode_name(response.responseHeader.serviceResult), *(int *) response.results->value.data);
+    }
+}
+

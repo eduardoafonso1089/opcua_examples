@@ -37,7 +37,7 @@ UA_NodeId CreatorIM::createIntValue(UA_Int32 initialValue, UA_NodeId parentNodeI
 }
 
 
-UA_StatusCode CreatorIM::incrementalIntVal(UA_NodeId node, int initialValue, int finalValue)
+void CreatorIM::incrementalIntVal(UA_NodeId node, int initialValue, int finalValue)
 {
     int aux_initialValue = initialValue;
     UA_Variant value;
@@ -61,5 +61,4 @@ UA_StatusCode CreatorIM::incrementalIntVal(UA_NodeId node, int initialValue, int
 
         sleep(1);
     }
-    return this->retVal;
 }

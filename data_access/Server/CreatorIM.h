@@ -15,7 +15,7 @@ namespace CREATOR
         CreatorIM(UA_Server *server, UA_StatusCode retVal);
 
         UA_NodeId createIntValue(UA_Int32 initialValue, UA_NodeId parentNodeId, UA_NodeId parentReferenceNodeId);
-        UA_StatusCode incrementalIntVal(UA_NodeId node, int initialValue, int finalValue);
+        void incrementalIntVal(UA_NodeId node, int initialValue, int finalValue);
     };
 }
 

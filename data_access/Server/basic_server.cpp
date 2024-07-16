@@ -23,8 +23,9 @@ int main()
     UA_NodeId parentNodeId = UA_NODEID_NUMERIC(0, UA_NS0ID_OBJECTSFOLDER);
     UA_NodeId parentReferenceNodeId = UA_NODEID_NUMERIC(0, UA_NS0ID_ORGANIZES);
 
-    nodeIncremented = opcuaServer.createIntValue(100, parentNodeId, parentReferenceNodeId);
 
+    nodeIncremented = opcuaServer.createIntValue(100, parentNodeId, parentReferenceNodeId);
+    //Launch thread of incremental value
     thread th1(&CreatorIM::incrementalIntVal, opcuaServer, nodeIncremented, 0, 100); 
 
     if (opcuaServer.retVal != UA_STATUSCODE_GOOD)
@@ -34,7 +35,6 @@ int main()
     else
     {
         UA_LOG_INFO(UA_Log_Stdout, UA_LOGCATEGORY_SERVER, "Info %s \n", UA_StatusCode_name(opcuaServer.retVal));
-
     }
 
     retval = UA_Server_runUntilInterrupt(opcuaServer.server);

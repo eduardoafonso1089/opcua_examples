@@ -1,15 +1,16 @@
 
 # Compiler
-CC=g++
- 
+CC=g++  
+
 # Flags for compiler
-CC_FLAGS=-c \
+CC_FLAGS=-c 		\
 		 -W         \
          -Wall      \
          -ansi      \
+		 -pthread	\
+		 -std=c++11 \
          -pedantic	\
-		 -ldl
-		 
+		 -ldl 		
 
 OPCUA_FLAGS=-lopen62541	
 

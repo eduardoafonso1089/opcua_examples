@@ -32,7 +32,6 @@ UA_StatusCode ClientAgent::connectServer(const char * url)
         return this->retVal;
 }
 
-
 void ClientAgent::deleteClient()
 {
     UA_Client_delete(this->client); /* Disconnects the client internally */

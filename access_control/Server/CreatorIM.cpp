@@ -1,5 +1,7 @@
 #include <open62541/server.h>
 #include <open62541/plugin/log_stdout.h>
+#include <open62541/server_config_default.h>
+#include <open62541/plugin/accesscontrol_default.h>
 #include <unistd.h>
 #include "./CreatorIM.h"
 
@@ -131,4 +133,53 @@ UA_StatusCode CreatorIM::createMethod(UA_NodeId dataType_input, UA_NodeId dataTy
     }
 
     return retVal;
+}
+
+static UA_Boolean
+allowAddNode(UA_Server *server, UA_AccessControl *ac,
+             const UA_NodeId *sessionId, void *sessionContext,
+             const UA_AddNodesItem *item) {
+    UA_LOG_INFO(UA_Log_Stdout, UA_LOGCATEGORY_SERVER, "Called allowAddNode");
+    return UA_TRUE;
+}
+
+static UA_Boolean
+allowAddReference(UA_Server *server, UA_AccessControl *ac,
+                  const UA_NodeId *sessionId, void *sessionContext,
+                  const UA_AddReferencesItem *item) {
+    UA_LOG_INFO(UA_Log_Stdout, UA_LOGCATEGORY_SERVER, "Called allowAddReference");
+
+    return UA_TRUE;
+}
+
+static UA_Boolean
+allowDeleteNode(UA_Server *server, UA_AccessControl *ac,
+                const UA_NodeId *sessionId, void *sessionContext,
+                const UA_DeleteNodesItem *item) {
+    UA_LOG_INFO(UA_Log_Stdout, UA_LOGCATEGORY_SERVER, "Called allowDeleteNode");
+
+    return UA_FALSE; // Do not allow deletion from client
+}
+
+static UA_Boolean
+allowDeleteReference(UA_Server *server, UA_AccessControl *ac,
+                     const UA_NodeId *sessionId, void *sessionContext,
+                     const UA_DeleteReferencesItem *item) {
+    UA_LOG_INFO(UA_Log_Stdout, UA_LOGCATEGORY_SERVER, "Called allowDeleteReference");
+    return UA_TRUE;
+}
+
+void CreatorIM::setCustomAccessControl(UA_ServerConfig *config,  UA_UsernamePasswordLogin * userNamePW) {
+    /* Use the default AccessControl plugin as the starting point */
+    UA_Boolean allowAnonymous = false;
+    UA_String encryptionPolicy =
+        config->securityPolicies[config->securityPoliciesSize-1].policyUri;
+    config->accessControl.clear(&config->accessControl);
+    UA_AccessControl_default(config, allowAnonymous, &encryptionPolicy, 2, userNamePW);
+
+    /* Override accessControl functions for nodeManagement */
+    config->accessControl.allowAddNode = allowAddNode;
+    config->accessControl.allowAddReference = allowAddReference;
+    config->accessControl.allowDeleteNode = allowDeleteNode;
+    config->accessControl.allowDeleteReference = allowDeleteReference;
 }

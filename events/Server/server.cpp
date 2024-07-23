@@ -97,6 +97,7 @@ int main()
     UA_NodeId dataType_output = UA_TYPES[UA_TYPES_INT32].typeId;
     char * functionName = "Int sum";
 
+    // Method Call
     opcuaServer.createMethod(dataType_input, dataType_output, functionName, intSumMethodCallback);
 
     dataType_input = UA_TYPES[UA_TYPES_FLOAT].typeId;
@@ -105,6 +106,7 @@ int main()
 
     opcuaServer.createMethod(dataType_input, dataType_output, functionName, multFloatMethodCallback);
 
+    // Event Creation
     opcuaServer.addNewEventType();
     opcuaServer.addGenerateEventMethod();
 

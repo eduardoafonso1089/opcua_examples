@@ -17,6 +17,8 @@ namespace CLIENTAGENT
         void readValue(UA_NodeId node);
         void deleteClient();
         void clientConfig();
+        UA_UInt32 createSubscription();
+        UA_StatusCode monitorItens(UA_UInt32 subId,UA_NodeId monitoredNode);
 
     };
 }

@@ -22,21 +22,35 @@ The repository is organized as follows:
 
 ```
 
-/opcua_examples
-|-- /examples
-| |-- basic_server.c
-| |-- basic_client.c
-| |-- data_access_server.c
-| |-- data_access_client.c
-| |-- event_server.c
-| |-- event_client.c
+/opcua_open62541
+|-- /1 - basics
+| |-- /Server
+| |-- /Client
+|-- /2 - data access
+| |-- /Server
+| |-- /Client
+|-- /3 - create_variables
+| |-- /Server
+| |-- /Client
+|-- /4 - methods
+| |-- /Server
+| |-- /Client
+|-- /5 - access_control // username: user pwd: user123 
+| |-- /Server
+| |-- /Client
+|-- /6 - events
+| |-- /Server
+| |-- /Client
+|-- /7 - nodeset_loader
+| |-- /Server
+| |-- /Client
 |-- .gitignore
 |-- LICENSE
 |-- README.md
 ```
 
 
-- **/examples**: Contains example source files demonstrating different OPC UA functionalities.
+- **/opcua_open62541**: Contains example source files demonstrating different OPC UA functionalities.
 - **.gitignore**: Specifies files and directories to be ignored by git.
 - **LICENSE**: The license under which the repository is distributed.
 - **README.md**: The file you are currently reading.
@@ -50,7 +64,7 @@ To compile and run the examples, you need to have the open62541 library installe
    ```
    sh
    git clone https://github.com/yourusername/opcua_examples.git
-   cd opcua_examples
+   cd opcua_open62541
    ```
 
 2. **Install the open62541 library**:
@@ -59,9 +73,9 @@ Follow the installation instructions from the open62541 GitHub repository.
 
 3. **Compile the examples**:
 
-You can use the provided Makefile to compile the examples. Run the following command in the root directory of the repository:
+You can use the provided Makefile to compile the examples. Run the following command in nestled directory example in the root of the repository:
 ```
-make
+make all
 ```
 ## Usage
 After compiling the examples, you can run them from the command line. Here are some usage examples:
@@ -69,32 +83,15 @@ After compiling the examples, you can run them from the command line. Here are s
 1. Running the basic server:
 
 ```
-./basic_server
+./basic_server or ./server
 ```
 
 2. Running the basic client:
 ```
-./basic_client
+./basic_client or ./client
 ```
 
 For detailed instructions on running each example, refer to the comments in the source files located in the /examples directory.
-
-## Examples
-
-### Basic Server and Client
-
-basic_server.c: A simple OPC UA server that provides a basic set of services.
-basic_client.c: A client that connects to the basic server and performs basic operations.
-
-### Data Access
-
-data_access_server.c: A server that supports data access services.
-data_access_client.c: A client that reads and writes data from/to the data access server.
-
-### Events
-
-event_server.c: A server that generates events.
-event_client.c: A client that subscribes to and processes events from the event server.
 
 ## Contribution
 

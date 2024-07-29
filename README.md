@@ -1,6 +1,6 @@
 # OPC UA Examples with open62541
 
-Welcome to the `opcua_examples` repository! This repository provides a collection of examples using the open62541 library to help developers implement OPC UA solutions. The goal is to offer a variety of examples that can serve as a foundation for your own implementations.
+Welcome to the `opcua_open62541` repository! This repository provides a collection of examples using the open62541 library to help developers implement OPC UA solutions. The goal is to offer a variety of examples that can serve as a foundation for your own implementations.
 
 ## Table of Contents
 
@@ -8,7 +8,6 @@ Welcome to the `opcua_examples` repository! This repository provides a collectio
 - [Repository Structure](#repository-structure)
 - [Installation](#installation)
 - [Usage](#usage)
-- [Examples](#examples)
 - [Contribution](#contribution)
 - [License](#license)
 

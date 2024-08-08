@@ -43,6 +43,9 @@ The repository is organized as follows:
 |-- /7 - nodeset_loader
 | |-- /Server
 | |-- /Client
+|-- /8 - historical_data
+| |-- /Server
+| |-- /Client
 |-- .gitignore
 |-- LICENSE
 |-- README.md
